@@ -81,7 +81,7 @@ exports.create = async (req, res) => {
     const { artistId } = req.params;
 
     try {
-      const [{ affectedRows }] = await db.query ('DELETE FROM artist WHERE id = ?', [
+      const [{ affectedRows }] = await db.query ('DELETE FROM Artist WHERE id = ?', [
         artistId,
       ])
 
