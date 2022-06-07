@@ -42,6 +42,16 @@ const setUpDatabase = async () => {
       genre VARCHAR(25)
     )`);
 
+    await db.query(`USE ${DB_NAME}`);
+    await db.query(`CREATE TABLE IF NOT EXISTS Album (
+      id INT PRIMARY KEY auto_increment,
+      name VARCHAR(25),
+      genre VARCHAR(25),
+      year INT(5),
+      artistId INT(5),
+      FOREIGN KEY (artistId) references Artist(id)
+    )`);
+
     db.close();
 
   } catch (err) {
