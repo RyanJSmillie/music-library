@@ -3,13 +3,16 @@ const getDb = require('/Volumes/WDPassport/ManchesterCodes/music-library/src/ser
 exports.create = async (req, res) => {
     const db = await getDb();
     const { name, genre, year } = req.body;
-    // const { artistId } = req.parmas;
+    const artistId = req.params.artistId;
+
+    // console.log(artistId);
   
     try {
-      await db.query(`INSERT INTO Album (name, genre, year) VALUES (?, ?, ?)`, [
+      await db.query(`INSERT INTO Album (name, genre, year, artistId) VALUES (?, ?, ?, ?)`, [
         name,
         genre,
         year,
+        artistId,
       ]);
   
       res.sendStatus(201);
