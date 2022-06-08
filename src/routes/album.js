@@ -4,6 +4,8 @@ const albumController = require('../controllers/album');
 const router = express.Router();
 
 router.post('/', albumController.create);
-router.post('/artist/:artistId/album', albumController.create);
+router.get('/', albumController.read);
+router.get('/:albumId', albumController.readById);
+router.patch('/:albumId', albumController.updateById)
 
 module.exports = router;
