@@ -78,3 +78,26 @@ exports.create = async (req, res) => {
   
     db.close();
   };
+
+  exports.deleteById = async (req, res) => {
+    const db = await getDb();
+    const { albumId } = req.params;
+
+    try {
+      const [{ affectedRows }] = await db.query ('DELETE FROM Album WHERE id = ?', [
+        albumId,
+      ])
+
+      if(!affectedRows) {
+        res.sendStatus(404);
+      } else {
+        res.status(200).send()
+      }
+
+    } catch(e) {
+      res.status(500).json(e);
+      console.log(e);
+    }
+
+    db.close();
+  }
